@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+
+:root {
+  --color-dark: #0f0f0f;
+  --color-light: #ecedee;
+  --color-gray-01: #6d6d6d;
+  --color-gray-02: #424242;
+  --color-neon: #e9ff1a;
+
+  --color-red: #ff5964;
+  --color-yellow: #ffff99;
+  --color-green: #05ff00;
+
+  --color-pink: #cc4090;
+  --color-blue: #05a2c2;
+  --color-orange: #c26719;
+  --color-purple: #9b19c2;
+
+  --pure-black: #000000;
+  --pure-white: #ffffff;
+
+  --transparent-dark--70: rgba(15, 15, 15, 0.7);
+  --transparent-black--80: rgba(0, 0, 0, 0.8);
+  --transparent-pink--20: rgba(204, 64, 144, 0.2);
+  --transparent-blue--20: rgba(5, 162, 194, 0.2);
+  --transparent-orange--20: rgba(194, 103, 25, 0.2);
+  --transparent-purple--20: rgba(155, 25, 194, 0.2);
+
+  --bg-primary: var(--color-dark);
+  --text-primary: var(--color-light);
+  --text-secondary: var(--color-gray-01);
+  --borders-input: var(--color-gray-02)
+  --visual-primary--active: var(--color-neon);
+}
+
+html * {
+  outline: none;
+  box-sizing: border-box;
+  color: inherit;
+
+  /* 🐞 */
+
+  /* border: 1px dotted #999999; */
+}
