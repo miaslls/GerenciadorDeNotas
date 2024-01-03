@@ -1,0 +1,25 @@
+.container {
+  position: relative;
+}
+
+.card.BIOLOGIA {
+  background: var(--color-pink);
+}
+
+.card.ARTES {
+  background: var(--color-blue);
+}
+
+.card.GEOGRAFIA {
+  background: var(--color-orange);
+}
+
+.card.SOCIOLOGIA {
+  background: var(--color-purple);
+}
+
+.card {
+  aspect-ratio: 10/9;
+  padding: 1rem;
+  border-radius: 1.25rem;
+}

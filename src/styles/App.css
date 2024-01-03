@@ -49,7 +49,7 @@ html {
 
 body {
   width: 100dvw;
-  height: 100dvh;
+  min-height: 100dvh;
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: 'Montserrat', sans-serif;
@@ -59,10 +59,16 @@ body {
 
 main.container {
   width: 100%;
-  height: 100%;
   padding: 2rem;
   margin-top: 2rem;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 1120px) {
+  main.container {
+    gap: 3rem;
+  }
 }
