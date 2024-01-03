@@ -1,8 +1,45 @@
-.container {
+.bimestre {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.bimestre > header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bimestre .title {
+  color: var(--pure-white);
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 100%;
+  text-transform: capitalize;
+}
+
+button.create {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.125rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--color-neon);
+  color: var(--color-dark);
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 600;
+}
+
+button.create .icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+button.create .text {
+  display: none;
 }
 
 .disciplina_grid {
@@ -14,7 +51,7 @@
 }
 
 @media (min-width: 701px) and (max-width: 1000px) {
-  .container {
+  .bimestre {
     max-width: 90%;
   }
 
@@ -24,8 +61,12 @@
 }
 
 @media (min-width: 1001px) {
-  .container {
+  .bimestre {
     max-width: 60rem;
+  }
+
+  button.create .text {
+    display: inline;
   }
 
   .disciplina_grid {
