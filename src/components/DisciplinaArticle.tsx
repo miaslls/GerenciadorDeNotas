@@ -23,7 +23,7 @@ export default function DisciplinaArticle({
         <p className={styles.text}>Nota: 5</p>
       </div>
 
-      <button className={styles.delete_btn}>
+      <button className={styles.delete} type="button">
         <img className={styles.icon} src={trashIcon} alt="lixeira" />
       </button>
     </article>

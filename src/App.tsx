@@ -1,11 +1,11 @@
-import './styles/App.css';
+import './styles/global.css';
 
 import { Bimestre } from './api/types/Resultado';
 import BimestreSection from './components/BimestreSection';
 
 function App() {
   return (
-    <main className="container">
+    <main className="page">
       {Object.values(Bimestre).map((key) => (
         <BimestreSection bimestre={Bimestre[key]} key={`bimestre-${key}`} />
       ))}

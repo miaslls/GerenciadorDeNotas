@@ -69,13 +69,13 @@
   color: var(--color-red);
 }
 
-.delete_btn {
+button.delete {
   position: absolute;
   right: -2.25rem;
   top: 0;
 }
 
-.delete_btn .icon {
+button.delete .icon {
   width: 2rem;
   height: 2rem;
 }
