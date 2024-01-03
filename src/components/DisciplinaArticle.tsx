@@ -14,7 +14,9 @@ export default function DisciplinaArticle({
   return (
     <article className={`${styles.card} ${styles[disciplina]}`}>
       <header>
-        <h3 className={styles.title}>{disciplina.toLowerCase()}</h3>
+        <h3 className={`${styles.title} clippable`}>
+          {disciplina.toLowerCase()}
+        </h3>
         <p className={styles.date}>02/01/2023</p>
       </header>
 

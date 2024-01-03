@@ -66,5 +66,9 @@ main.page {
   gap: 3rem;
 }
 
-
+.clippable {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
