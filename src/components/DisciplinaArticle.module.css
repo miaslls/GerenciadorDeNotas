@@ -1,7 +1,3 @@
-.container {
-  position: relative;
-}
-
 .card.BIOLOGIA {
   background: var(--color-pink);
 }
@@ -19,7 +15,67 @@
 }
 
 .card {
+  width: 100%;
+  max-width: 10rem;
   aspect-ratio: 10/9;
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1.25rem;
   border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.card header {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.card .title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 100%;
+  text-transform: capitalize;
+  margin-bottom: 0.5rem;
+}
+
+.card .date {
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.nota {
+  width: 100%;
+  padding: 0.25rem 1rem;
+  background: var(--transparent-dark--70);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* FIXME: 🐞 text & icon color 🔻 */
+
+.nota .icon {
+  margin: 0.25rem;
+  margin-left: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+.nota .text {
+  color: var(--color-red);
+}
+
+.delete_btn {
+  position: absolute;
+  right: -2.25rem;
+  top: 0;
+}
+
+.delete_btn .icon {
+  width: 2rem;
+  height: 2rem;
 }

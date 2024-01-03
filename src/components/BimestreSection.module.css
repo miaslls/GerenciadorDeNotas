@@ -1,6 +1,5 @@
 .container {
   width: 100%;
-  max-width: 46rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -10,11 +9,26 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  justify-content: space-between;
+  gap: 2rem 2.5rem;
 }
 
-@media (min-width: 1120px) {
+@media (min-width: 701px) and (max-width: 1000px) {
+  .container {
+    max-width: 90%;
+  }
+
   .disciplina_grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, min(10rem));
+  }
+}
+
+@media (min-width: 1001px) {
+  .container {
+    max-width: 60rem;
+  }
+
+  .disciplina_grid {
+    grid-template-columns: repeat(4, min(10rem));
   }
 }

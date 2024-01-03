@@ -16,12 +16,10 @@ export default function BimestreSection({ bimestre }: BimestreSectionProps) {
 
       <div className={styles.disciplina_grid}>
         {Object.values(Disciplina).map((key) => (
-          <div
-            className={styles.disciplina_item}
+          <DisciplinaArticle
+            disciplina={Disciplina[key]}
             key={`disciplina-${key}-${bimestre}`}
-          >
-            <DisciplinaArticle disciplina={Disciplina[key]} />
-          </div>
+          />
         ))}
       </div>
     </section>
