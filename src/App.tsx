@@ -25,17 +25,19 @@ function App() {
     setModalIsOpen((current) => !current);
   }
 
-  const { resultados, isLoading, isError } = useResultados();
+  const { data, isLoading, isError } = useResultados({ grouped: true });
+
+  // TODO: handle loading & error 🔻
 
   if (isLoading) {
     console.info('loading');
   }
 
   if (isError) {
-    console.error('error!');
+    console.error('error');
   }
 
-  console.log(resultados);
+  console.log(data);
 
   return (
     <>
