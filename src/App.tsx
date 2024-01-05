@@ -1,29 +1,43 @@
 import './styles/global.css';
 
+import { useEffect, useState } from 'react';
 import { Tooltip } from 'react-tooltip';
 import { Toaster } from 'react-hot-toast';
-import { useEffect, useState } from 'react';
 import { Bimestre } from './api/types/Resultado';
 import BimestreSection from './components/BimestreSection';
 import ResultadoModal from './components/ResultadoModal';
 
+type ModalState = {
+  isOpen: boolean;
+  bimestre?: Bimestre;
+};
+
 function App() {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalState, setModalState] = useState<ModalState>({
+    isOpen: false,
+  });
 
   useEffect(() => {
     function applyBodyOverflow(modalIsOpen: boolean) {
       document.body.style.overflowY = modalIsOpen ? 'hidden' : 'auto';
     }
 
-    applyBodyOverflow(modalIsOpen);
+    applyBodyOverflow(modalState.isOpen);
 
     return () => {
       applyBodyOverflow(false);
     };
-  }, [modalIsOpen]);
+  }, [modalState.isOpen]);
 
-  function handleToggleOpenModal() {
-    setModalIsOpen((current) => !current);
+  function handleModalState(bimestre?: Bimestre) {
+    if (!bimestre) {
+      setModalState({ isOpen: false });
+    }
+
+    setModalState({
+      isOpen: true,
+      bimestre,
+    });
   }
 
   return (
@@ -44,13 +58,18 @@ function App() {
         {Object.values(Bimestre).map((key) => (
           <BimestreSection
             bimestre={Bimestre[key]}
-            openModal={handleToggleOpenModal}
+            openModal={handleModalState}
             key={`bimestre-${key}`}
           />
         ))}
       </main>
 
-      {modalIsOpen && <ResultadoModal closeModal={handleToggleOpenModal} />}
+      {modalState.isOpen && modalState.bimestre && (
+        <ResultadoModal
+          closeModal={handleModalState}
+          bimestre={modalState.bimestre}
+        />
+      )}
     </>
   );
 }

@@ -7,26 +7,22 @@ import plusIcon from '../assets/plus.svg';
 
 type BimestreSectionProps = {
   bimestre: Bimestre;
-  openModal(): void;
+  openModal(bimestre: Bimestre): void;
 };
 
 export default function BimestreSection({
   bimestre,
   openModal,
 }: BimestreSectionProps) {
-  const { resultados, isLoading, isError } = useResultados();
+  const { filteredResultados, isLoading, isError } = useResultados(bimestre);
 
   if (isLoading) {
-    return <div>carregando...</div>;
+    return <div>Carregando...</div>;
   }
 
   if (isError) {
-    return <div>falha ao carregar conteúdo</div>;
+    return <div>Falha ao carregar o conteúdo</div>;
   }
-
-  const filteredResultados = resultados.filter(
-    (resultado: Resultado) => resultado.bimestre === bimestre
-  );
 
   return (
     <section className={styles.bimestre}>
@@ -38,7 +34,7 @@ export default function BimestreSection({
         <button
           className={`${styles.create} default--active`}
           type="button"
-          onClick={() => openModal()}
+          onClick={() => openModal(bimestre)}
           data-tooltip-id="tooltip"
           data-tooltip-content="Adicionar"
           data-tooltip-place="top"
