@@ -1,7 +1,7 @@
 import styles from './DisciplinaArticle.module.css';
 
-import toast from 'react-hot-toast';
 import { Resultado } from '../api/types/Resultado';
+import { removeResultado } from '../api/resultados/removeResultado';
 import chartIcon from '../assets/chart.svg';
 import trashIcon from '../assets/trash.svg';
 
@@ -9,6 +9,7 @@ export default function DisciplinaArticle({
   disciplina,
   criadoEm,
   nota,
+  id,
 }: Resultado) {
   const date = new Date(criadoEm).toLocaleDateString('pt-BR');
 
@@ -31,7 +32,7 @@ export default function DisciplinaArticle({
       <button
         className={styles.delete}
         type="button"
-        onClick={() => toast.success('click')}
+        onClick={() => removeResultado(id)}
       >
         <img className={styles.icon} src={trashIcon} alt="lixeira" />
       </button>
