@@ -5,6 +5,13 @@ export enum Bimestre {
   QUARTO = 'QUARTO',
 }
 
+export enum BimestreAlias {
+  PRIMEIRO = 'Bimestre 1',
+  SEGUNDO = 'Bimestre 2',
+  TERCEIRO = 'Bimestre 3',
+  QUARTO = 'Bimestre 4',
+}
+
 export enum Disciplina {
   BIOLOGIA = 'BIOLOGIA',
   ARTES = 'ARTES',

@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { fetcher } from '../api/fetcher';
+import { fetcher } from '../helpers/fetcher';
 
 export function useResultados() {
   const url = 'http://localhost:3000/resultados/';

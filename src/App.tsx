@@ -1,7 +1,7 @@
 import './styles/global.css';
 
 import { useEffect, useState } from 'react';
-import { useResultados } from './hooks/useResultados';
+import { useResultados } from './api/hooks/useResultados';
 import { Bimestre } from './api/types/Resultado';
 import BimestreSection from './components/BimestreSection';
 import ResultadoModal from './components/ResultadoModal';
