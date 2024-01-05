@@ -41,6 +41,9 @@ export default function DisciplinaArticle({
         className={styles.delete}
         type="button"
         onClick={() => removeResultado(id)}
+        data-tooltip-id="tooltip"
+        data-tooltip-content="Remover"
+        data-tooltip-place="top"
       >
         <img className={styles.icon} src={trashIcon} alt="lixeira" />
       </button>

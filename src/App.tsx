@@ -1,5 +1,6 @@
 import './styles/global.css';
 
+import { Tooltip } from 'react-tooltip';
 import { Toaster } from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { Bimestre } from './api/types/Resultado';
@@ -27,6 +28,8 @@ function App() {
 
   return (
     <>
+      <Tooltip id="tooltip" />
+
       <Toaster
         toastOptions={{
           style: {
@@ -36,6 +39,7 @@ function App() {
           },
         }}
       />
+
       <main className="page">
         {Object.values(Bimestre).map((key) => (
           <BimestreSection

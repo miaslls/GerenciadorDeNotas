@@ -39,6 +39,9 @@ export default function BimestreSection({
           className={`${styles.create} default--active`}
           type="button"
           onClick={() => openModal()}
+          data-tooltip-id="tooltip"
+          data-tooltip-content="Adicionar"
+          data-tooltip-place="top"
         >
           <span className={styles.text}>Lançar Nota</span>
           <img className={styles.icon} src={plusIcon} alt="Mais" />
