@@ -1,5 +1,6 @@
 import styles from './DisciplinaArticle.module.css';
 
+import toast from 'react-hot-toast';
 import { Resultado } from '../api/types/Resultado';
 import chartIcon from '../assets/chart.svg';
 import trashIcon from '../assets/trash.svg';
@@ -27,7 +28,11 @@ export default function DisciplinaArticle({
         <p className={styles.text}>Nota: {nota}</p>
       </div>
 
-      <button className={styles.delete} type="button">
+      <button
+        className={styles.delete}
+        type="button"
+        onClick={() => toast.success('click')}
+      >
         <img className={styles.icon} src={trashIcon} alt="lixeira" />
       </button>
     </article>

@@ -1,5 +1,6 @@
 import './styles/global.css';
 
+import { Toaster } from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { Bimestre } from './api/types/Resultado';
 import BimestreSection from './components/BimestreSection';
@@ -26,6 +27,15 @@ function App() {
 
   return (
     <>
+      <Toaster
+        toastOptions={{
+          style: {
+            background: 'var(--bg-primary)',
+            color: 'var(--text-primary)',
+            borderRadius: '1rem',
+          },
+        }}
+      />
       <main className="page">
         {Object.values(Bimestre).map((key) => (
           <BimestreSection
