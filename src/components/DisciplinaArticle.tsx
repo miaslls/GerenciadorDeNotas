@@ -2,7 +2,7 @@ import styles from './DisciplinaArticle.module.css';
 
 import { Resultado } from '../api/types/Resultado';
 import { removeResultado } from '../api/resultados/removeResultado';
-import chartIcon from '../assets/chart.svg';
+import { ChartIcon } from './ChartIcon';
 import trashIcon from '../assets/trash.svg';
 
 export default function DisciplinaArticle({
@@ -13,6 +13,16 @@ export default function DisciplinaArticle({
 }: Resultado) {
   const date = new Date(criadoEm).toLocaleDateString('pt-BR');
 
+  let notaColorClass: string;
+
+  if (nota < 6) {
+    notaColorClass = '--red';
+  } else if (nota < 8) {
+    notaColorClass = '--yellow';
+  } else {
+    notaColorClass = '--green';
+  }
+
   return (
     <article className={`${styles.card} ${disciplina}`}>
       <header>
@@ -22,10 +32,8 @@ export default function DisciplinaArticle({
         <p className={styles.date}>{date}</p>
       </header>
 
-      {/* TODO: conditional colors for nota */}
-
-      <div className={styles.nota}>
-        <img className={styles.icon} src={chartIcon} alt="gráfico" />
+      <div className={`${styles.nota} ${styles[notaColorClass]}`}>
+        <ChartIcon className={styles.icon} />
         <p className={styles.text}>Nota: {nota}</p>
       </div>
 
