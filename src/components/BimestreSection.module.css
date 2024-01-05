@@ -25,12 +25,6 @@ button.create {
   align-items: center;
   gap: 0.5rem;
   padding: 0.125rem 1rem;
-  border-radius: 0.75rem;
-  background: var(--color-neon);
-  color: var(--color-dark);
-  font-size: 1rem;
-  line-height: 1rem;
-  font-weight: 600;
 }
 
 button.create .icon {

@@ -29,7 +29,7 @@
   --bg-primary: var(--color-dark);
   --text-primary: var(--color-light);
   --text-secondary: var(--color-gray-01);
-  --borders-input: var(--color-gray-02)
+  --input-border: var(--color-gray-02);
   --visual-primary--active: var(--color-neon);
 }
 
@@ -66,9 +66,49 @@ main.page {
   gap: 3rem;
 }
 
+button.default--active {
+  border-radius: 0.75rem;
+  background: var(--visual-primary--active);
+  color: var(--color-dark);
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 600;
+}
+
 .clippable {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.BIOLOGIA {
+  background: var(--color-pink);
+}
+
+.ARTES {
+  background: var(--color-blue);
+}
+
+.GEOGRAFIA {
+  background: var(--color-orange);
+}
+
+.SOCIOLOGIA {
+  background: var(--color-purple);
+}
+
+.BIOLOGIA--inactive {
+  background: var(--transparent-pink--20);
+}
+
+.ARTES--inactive {
+  background: var(--transparent-blue--20);
+}
+
+.GEOGRAFIA--inactive {
+  background: var(--transparent-orange--20);
+}
+
+.SOCIOLOGIA--inactive {
+  background: var(--transparent-purple--20);
+}

@@ -16,7 +16,7 @@ export default function BimestreSection({ bimestre }: BimestreSectionProps) {
           {bimestre.toLowerCase()}
         </h2>
 
-        <button className={styles.create} type="button">
+        <button className={`${styles.create} default--active`} type="button">
           <span className={styles.text}>Lançar Nota</span>
           <img className={styles.icon} src={plusIcon} alt="Mais" />
         </button>

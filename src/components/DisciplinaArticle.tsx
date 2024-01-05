@@ -12,7 +12,7 @@ export default function DisciplinaArticle({
   disciplina,
 }: DisciplinaArticleProps) {
   return (
-    <article className={`${styles.card} ${styles[disciplina]}`}>
+    <article className={`${styles.card} ${disciplina}`}>
       <header>
         <h3 className={`${styles.title} clippable`}>
           {disciplina.toLowerCase()}

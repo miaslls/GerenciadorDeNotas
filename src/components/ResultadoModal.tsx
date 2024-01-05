@@ -1,5 +1,6 @@
 import styles from './ResultadoModal.module.css';
 
+import ResultadoForm from './ResultadoForm';
 import xIcon from '../assets/x.svg';
 
 type OverlayProps = {
@@ -23,7 +24,7 @@ export default function ResultadoModal() {
           </button>
         </header>
 
-        {/* TODO: FORM */}
+        <ResultadoForm />
       </section>
     </Overlay>
   );
