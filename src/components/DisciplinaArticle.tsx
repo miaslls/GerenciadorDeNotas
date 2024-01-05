@@ -1,28 +1,30 @@
 import styles from './DisciplinaArticle.module.css';
 
-import { Disciplina } from '../api/types/Resultado';
+import { Resultado } from '../api/types/Resultado';
 import chartIcon from '../assets/chart.svg';
 import trashIcon from '../assets/trash.svg';
 
-type DisciplinaArticleProps = {
-  disciplina: Disciplina;
-};
-
 export default function DisciplinaArticle({
   disciplina,
-}: DisciplinaArticleProps) {
+  criadoEm,
+  nota,
+}: Resultado) {
+  const date = new Date(criadoEm).toLocaleDateString('pt-BR');
+
   return (
     <article className={`${styles.card} ${disciplina}`}>
       <header>
         <h3 className={`${styles.title} clippable`}>
           {disciplina.toLowerCase()}
         </h3>
-        <p className={styles.date}>02/01/2023</p>
+        <p className={styles.date}>{date}</p>
       </header>
+
+      {/* TODO: conditional colors for nota */}
 
       <div className={styles.nota}>
         <img className={styles.icon} src={chartIcon} alt="gráfico" />
-        <p className={styles.text}>Nota: 5</p>
+        <p className={styles.text}>Nota: {nota}</p>
       </div>
 
       <button className={styles.delete} type="button">

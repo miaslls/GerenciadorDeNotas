@@ -1,6 +1,7 @@
 import styles from './BimestreSection.module.css';
 
-import { Bimestre, Disciplina } from '../api/types/Resultado';
+import { Bimestre, BimestreAlias, Resultado } from '../api/types/Resultado';
+import { useResultados } from '../api/resultados/useResultados';
 import DisciplinaArticle from './DisciplinaArticle';
 import plusIcon from '../assets/plus.svg';
 
@@ -13,11 +14,25 @@ export default function BimestreSection({
   bimestre,
   openModal,
 }: BimestreSectionProps) {
+  const { resultados, isLoading, isError } = useResultados();
+
+  if (isLoading) {
+    return <div>carregando...</div>;
+  }
+
+  if (isError) {
+    return <div>falha ao carregar conteúdo</div>;
+  }
+
+  const filteredResultados = resultados.filter(
+    (resultado: Resultado) => resultado.bimestre === bimestre
+  );
+
   return (
     <section className={styles.bimestre}>
       <header>
         <h2 className={`${styles.title} clippable`}>
-          {bimestre.toLowerCase()}
+          {BimestreAlias[bimestre]}
         </h2>
 
         <button
@@ -31,10 +46,10 @@ export default function BimestreSection({
       </header>
 
       <div className={styles.disciplina_grid}>
-        {Object.values(Disciplina).map((key) => (
+        {filteredResultados.map((resultado: Resultado) => (
           <DisciplinaArticle
-            disciplina={Disciplina[key]}
-            key={`disciplina-${key}-${bimestre}`}
+            {...resultado}
+            key={`disciplina-${resultado.disciplina}-${resultado.bimestre}`}
           />
         ))}
       </div>
