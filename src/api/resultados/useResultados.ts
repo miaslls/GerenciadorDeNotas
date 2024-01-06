@@ -15,7 +15,7 @@ export function useResultados(bimestre?: Bimestre) {
   }
 
   return {
-    filteredResultados: resultados?.filter(
+    resultadosByBimestre: resultados?.filter(
       (resultado: Resultado) => resultado.bimestre === bimestre
     ),
     isLoading,

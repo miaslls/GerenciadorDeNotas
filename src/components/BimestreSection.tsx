@@ -14,7 +14,7 @@ export default function BimestreSection({
   bimestre,
   openModal,
 }: BimestreSectionProps) {
-  const { filteredResultados, isLoading, isError } = useResultados(bimestre);
+  const { resultadosByBimestre, isLoading, isError } = useResultados(bimestre);
 
   if (isLoading) {
     return <div>Carregando...</div>;
@@ -45,7 +45,7 @@ export default function BimestreSection({
       </header>
 
       <div className={styles.disciplina_grid}>
-        {filteredResultados.map((resultado: Resultado) => (
+        {resultadosByBimestre.map((resultado: Resultado) => (
           <DisciplinaArticle
             {...resultado}
             key={`disciplina-${resultado.disciplina}-${resultado.bimestre}`}
