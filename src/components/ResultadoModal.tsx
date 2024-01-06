@@ -26,7 +26,7 @@ export default function ResultadoModal({
   bimestre,
   closeModal,
 }: ResultadoModalProps) {
-  function handleClick(e: React.MouseEvent<HTMLButtonElement | HTMLElement>) {
+  function handleUIClick(e: React.MouseEvent<HTMLButtonElement | HTMLElement>) {
     e.stopPropagation();
 
     if (e.currentTarget instanceof HTMLButtonElement) {
@@ -36,18 +36,22 @@ export default function ResultadoModal({
 
   return (
     <Overlay closeModal={closeModal}>
-      <section className={styles.modal} onClick={handleClick}>
+      <section className={styles.modal} onClick={handleUIClick}>
         <header>
           <h1 className={`${styles.title} clippable`}>
             {BimestreAlias[bimestre]}
           </h1>
 
-          <button className={styles.close} type="button" onClick={handleClick}>
+          <button
+            className={styles.close}
+            type="button"
+            onClick={handleUIClick}
+          >
             <img className={styles.icon} src={xIcon} alt="X" />
           </button>
         </header>
 
-        <ResultadoForm />
+        <ResultadoForm bimestre={bimestre} />
       </section>
     </Overlay>
   );

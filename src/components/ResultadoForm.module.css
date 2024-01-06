@@ -18,8 +18,6 @@
   margin-bottom: 1.5rem;
 }
 
-/* 🐞 FIXME: bg-color */
-
 .disciplina_input {
   padding: 1rem;
   border-radius: 1.25rem;
@@ -42,6 +40,11 @@
   border: 1px solid var(--input-border);
   border-radius: 0.75rem;
   text-align: center;
+}
+
+.nota_input:read-only {
+  color: var(--text-secondary);
+  cursor: not-allowed;
 }
 
 button.submit {
