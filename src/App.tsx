@@ -17,6 +17,18 @@ function App() {
     isOpen: false,
   });
 
+  function handleModalState(bimestre?: Bimestre) {
+    if (bimestre) {
+      setModalState({
+        isOpen: true,
+        bimestre,
+      });
+    } else {
+      setModalState({ isOpen: false });
+      delete modalState.bimestre;
+    }
+  }
+
   useEffect(() => {
     function applyBodyOverflow(modalIsOpen: boolean) {
       document.body.style.overflowY = modalIsOpen ? 'hidden' : 'auto';
@@ -27,18 +39,7 @@ function App() {
     return () => {
       applyBodyOverflow(false);
     };
-  }, [modalState.isOpen]);
-
-  function handleModalState(bimestre?: Bimestre) {
-    if (!bimestre) {
-      setModalState({ isOpen: false });
-    }
-
-    setModalState({
-      isOpen: true,
-      bimestre,
-    });
-  }
+  }, [modalState]);
 
   return (
     <>
