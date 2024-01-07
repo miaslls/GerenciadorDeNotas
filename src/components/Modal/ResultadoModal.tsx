@@ -62,7 +62,7 @@ export default function ResultadoModal({
             </button>
           </header>
 
-          <ResultadoForm bimestre={bimestre} close={closeModal} />
+          <ResultadoForm bimestre={bimestre} />
         </section>
       </>
     </Overlay>
