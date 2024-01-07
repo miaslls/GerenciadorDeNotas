@@ -5,11 +5,11 @@
   --color-light: #ecedee;
   --color-gray-01: #6d6d6d;
   --color-gray-02: #424242;
-  --color-neon: #e9ff1a;
 
   --color-red: #ff5964;
   --color-yellow: #ffff99;
   --color-green: #05ff00;
+  --color-neon: #e9ff1a;
 
   --color-pink: #cc4090;
   --color-blue: #05a2c2;
@@ -66,13 +66,18 @@ main.page {
   gap: 3rem;
 }
 
-button.default--active {
+button.default {
   border-radius: 0.75rem;
   background: var(--visual-primary--active);
   color: var(--color-dark);
   font-size: 1rem;
   line-height: 1rem;
   font-weight: 600;
+}
+
+button.default:disabled {
+  filter: grayscale(0.9) opacity(0.25);
+  cursor: not-allowed;
 }
 
 .clippable {

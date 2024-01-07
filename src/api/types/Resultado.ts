@@ -27,3 +27,5 @@ export type Resultado = {
   criadoEm: Date;
   atualizadoEm: Date;
 };
+
+export type ResultadoDTO = Pick<Resultado, 'bimestre' | 'disciplina' | 'nota'>;

@@ -1,8 +1,15 @@
 import styles from './ResultadoForm.module.css';
 
-import { ChangeEvent, useState } from 'react';
-import { Resultado, Bimestre, Disciplina } from '../api/types/Resultado';
+import toast from 'react-hot-toast';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import {
+  Resultado,
+  Bimestre,
+  Disciplina,
+  ResultadoDTO,
+} from '../api/types/Resultado';
 import { useResultados } from '../api/resultados/useResultados';
+import { handleCreateResultados } from '../api/resultados/createResultados';
 
 type FormState = {
   bimestre: Bimestre;
@@ -15,7 +22,60 @@ type FormState = {
   };
 };
 
-export default function ResultadoForm({ bimestre }: { bimestre: Bimestre }) {
+async function handleSubmit(
+  e: FormEvent<HTMLFormElement>,
+  formData: FormState,
+  close: CallableFunction
+) {
+  e.preventDefault();
+  close();
+
+  const toastId = toast.loading('Carregando...');
+
+  const postDisciplinas = Object.values(Disciplina).filter(
+    (disciplina) =>
+      !formData.readonlyDisciplinas.includes(disciplina) &&
+      typeof formData.notas[disciplina] === 'number'
+  );
+
+  const postData = postDisciplinas.map((disciplina) => ({
+    disciplina,
+    bimestre: formData.bimestre,
+    nota: formData.notas[disciplina],
+  })) as ResultadoDTO[];
+
+  const errorMessages = await handleCreateResultados(postData);
+
+  if (!errorMessages) {
+    toast.success(`${postData.length} nota(s) lançada(s)`, { id: toastId });
+    return;
+  }
+
+  const errorString = errorMessages.join('; ');
+
+  if (errorMessages.length === postData.length) {
+    toast.error(`Falha ao lançar nota(s); Erro(s): ${errorString}`, {
+      id: toastId,
+    });
+
+    return;
+  }
+
+  const success = postData.length - errorMessages.length;
+
+  toast(
+    `${success} nota(s) lançada(s); ${errorMessages.length} erro(s): ${errorString}`,
+    { id: toastId }
+  );
+}
+
+export default function ResultadoForm({
+  bimestre,
+  close,
+}: {
+  bimestre: Bimestre;
+  close(): void;
+}) {
   const {
     resultadosByBimestre: resultados,
     isLoading,
@@ -77,16 +137,41 @@ export default function ResultadoForm({ bimestre }: { bimestre: Bimestre }) {
     initialFormState(bimestre, resultados)
   );
 
+  const isDisciplinaActive = (disciplina: Disciplina) => {
+    return disciplina === formState.activeDisciplina;
+  };
+
+  const isFormSubmissable = (form: FormState) => {
+    const definedNotas = Object.values(form.notas).filter(
+      (nota) => nota !== ''
+    );
+
+    if (definedNotas.length > form.readonlyDisciplinas.length) {
+      return true;
+    }
+
+    return false;
+  };
+
+  console.log(isFormSubmissable(formState)); // 🐞
+
   function handleDisciplinaClick(disciplina: Disciplina) {
-    const newNota = formState.notas[disciplina];
+    const nota = formState.notas[disciplina];
+
     setFormState({
       ...formState,
       activeDisciplina: disciplina,
       currentNota: {
-        value: newNota,
+        value: nota,
         isReadonly: formState.readonlyDisciplinas.includes(disciplina),
       },
     });
+
+    const input = document.querySelector(
+      "input[name='nota']"
+    ) as HTMLInputElement;
+
+    input.focus();
   }
 
   function handleNotaInput(e: ChangeEvent<HTMLInputElement>) {
@@ -105,12 +190,12 @@ export default function ResultadoForm({ bimestre }: { bimestre: Bimestre }) {
     });
   }
 
-  const isDisciplinaActive = (disciplina: Disciplina) => {
-    return disciplina === formState.activeDisciplina;
-  };
-
   return (
-    <form className={styles.resultado_form}>
+    <form
+      className={styles.resultado_form}
+      onSubmit={(e) => handleSubmit(e, formState, close)}
+      autoComplete="off"
+    >
       <fieldset className={styles.disciplina_grid}>
         <legend className={styles.title}>Disciplina</legend>
 
@@ -145,7 +230,18 @@ export default function ResultadoForm({ bimestre }: { bimestre: Bimestre }) {
         />
       </label>
 
-      <button className={`${styles.submit} default--active`} type="submit">
+      <button
+        className={`${styles.submit} default`}
+        disabled={!isFormSubmissable(formState)}
+        type="submit"
+        data-tooltip-id="modal_tooltip"
+        data-tooltip-place="top"
+        data-tooltip-content={
+          isFormSubmissable(formState)
+            ? 'Lançar nota(s)'
+            : 'Não há notas a lançar'
+        }
+      >
         Confirmar
       </button>
     </form>
