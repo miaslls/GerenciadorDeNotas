@@ -32,7 +32,7 @@ export default function BimestreSection({
         </h2>
 
         <button
-          className={`${styles.create} default--active`}
+          className={`${styles.create} default`}
           type="button"
           onClick={() => openModal(bimestre)}
           data-tooltip-id="tooltip"

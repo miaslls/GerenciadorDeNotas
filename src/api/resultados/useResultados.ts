@@ -1,10 +1,14 @@
 import useSWR from 'swr';
 import { fetcher } from '../helpers/fetcher';
+import { endpoints } from '../helpers/endpoints';
 import { Bimestre, Resultado } from '../types/Resultado';
 
 export function useResultados(bimestre?: Bimestre) {
-  const url = 'http://localhost:3000/resultados/';
-  const { data: resultados, isLoading, error } = useSWR(url, fetcher);
+  const {
+    data: resultados,
+    isLoading,
+    error,
+  } = useSWR(endpoints.getResultados(), fetcher);
 
   if (!bimestre) {
     return {

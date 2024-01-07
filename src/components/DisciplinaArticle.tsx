@@ -1,7 +1,7 @@
 import styles from './DisciplinaArticle.module.css';
 
 import { Resultado } from '../api/types/Resultado';
-import { removeResultado } from '../api/resultados/removeResultado';
+import { handleRemoveResultado } from '../api/resultados/removeResultado';
 import { ChartIcon } from './ChartIcon';
 import trashIcon from '../assets/trash.svg';
 
@@ -40,7 +40,7 @@ export default function DisciplinaArticle({
       <button
         className={styles.delete}
         type="button"
-        onClick={() => removeResultado(id)}
+        onClick={() => handleRemoveResultado(id)}
         data-tooltip-id="tooltip"
         data-tooltip-content="Remover"
         data-tooltip-place="top"

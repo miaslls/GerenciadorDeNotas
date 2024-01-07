@@ -1,18 +1,17 @@
 import { mutate } from 'swr';
 import { toast } from 'react-hot-toast';
+import { endpoints } from '../helpers/endpoints';
 
-export async function removeResultado(id: string) {
-  const toastId = toast.loading('carregando...');
+export async function handleRemoveResultado(id: string) {
+  const toastId = toast.loading('Carregando...');
 
-  const baseUrl = 'http://localhost:3000';
-  const resultados = `${baseUrl}/resultados/`;
-  const currentUrl = resultados + id;
-
-  const response = await fetch(currentUrl, { method: 'DELETE' });
+  const response = await fetch(endpoints.removeResultado(id), {
+    method: 'DELETE',
+  });
 
   if (response.ok) {
     toast.success('Resultado removido', { id: toastId });
-    mutate(resultados);
+    mutate(endpoints.getResultados());
   } else {
     const error = await response.json();
     toast.error(error.message, { id: toastId });
