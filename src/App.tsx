@@ -1,45 +1,14 @@
 import './styles/global.css';
 
-import { useEffect, useState } from 'react';
 import { Tooltip } from 'react-tooltip';
 import { Toaster } from 'react-hot-toast';
 import { Bimestre } from './api/types/Resultado';
+import { useModal } from './components/Modal/ModalContextProvider';
 import BimestreSection from './components/BimestreSection';
-import ResultadoModal from './components/ResultadoModal';
-
-type ModalState = {
-  isOpen: boolean;
-  bimestre?: Bimestre;
-};
+import ResultadoModal from './components/Modal/ResultadoModal';
 
 function App() {
-  const [modalState, setModalState] = useState<ModalState>({
-    isOpen: false,
-  });
-
-  function handleModalState(bimestre?: Bimestre) {
-    if (bimestre) {
-      setModalState({
-        isOpen: true,
-        bimestre,
-      });
-    } else {
-      setModalState({ isOpen: false });
-      delete modalState.bimestre;
-    }
-  }
-
-  useEffect(() => {
-    function applyBodyOverflow(modalIsOpen: boolean) {
-      document.body.style.overflowY = modalIsOpen ? 'hidden' : 'auto';
-    }
-
-    applyBodyOverflow(modalState.isOpen);
-
-    return () => {
-      applyBodyOverflow(false);
-    };
-  }, [modalState]);
+  const { modalState, handleModalState } = useModal();
 
   return (
     <>
