@@ -1,8 +1,8 @@
 import styles from './DisciplinaArticle.module.css';
 
-import { Resultado } from '../api/types/Resultado';
 import { handleRemoveResultado } from '../api/resultados/removeResultado';
-import { ChartIcon } from './ChartIcon';
+import { Resultado } from '../api/types/Resultado';
+import { ChartIcon } from '../assets/ChartIcon';
 import trashIcon from '../assets/trash.svg';
 
 export default function DisciplinaArticle({
