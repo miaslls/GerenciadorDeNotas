@@ -2,7 +2,7 @@ import styles from './ResultadoModal.module.css';
 
 import { Tooltip } from 'react-tooltip';
 import { Bimestre, BimestreAlias } from '../../api/types/Resultado';
-import ResultadoForm from '../ResultadoForm';
+import ResultadoForm from '../form/ResultadoForm';
 import xIcon from '../../assets/x.svg';
 
 type OverlayProps = {

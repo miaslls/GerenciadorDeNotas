@@ -1,9 +1,9 @@
 import styles from './DisciplinaArticle.module.css';
 
-import { handleRemoveResultado } from '../api/resultados/removeResultado';
-import { Resultado } from '../api/types/Resultado';
-import { ChartIcon } from '../assets/ChartIcon';
-import trashIcon from '../assets/trash.svg';
+import { handleRemoveResultado } from '../../api/resultados/removeResultado';
+import { Resultado } from '../../api/types/Resultado';
+import { ChartIcon } from '../../assets/ChartIcon';
+import trashIcon from '../../assets/trash.svg';
 
 export default function DisciplinaArticle({
   disciplina,

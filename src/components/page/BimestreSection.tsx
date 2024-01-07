@@ -1,9 +1,9 @@
 import styles from './BimestreSection.module.css';
 
-import { Bimestre, BimestreAlias, Resultado } from '../api/types/Resultado';
-import { useResultados } from '../api/resultados/useResultados';
+import { Bimestre, BimestreAlias, Resultado } from '../../api/types/Resultado';
+import { useResultados } from '../../api/resultados/useResultados';
 import DisciplinaArticle from './DisciplinaArticle';
-import plusIcon from '../assets/plus.svg';
+import plusIcon from '../../assets/plus.svg';
 
 type BimestreSectionProps = {
   bimestre: Bimestre;

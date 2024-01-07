@@ -3,9 +3,9 @@ import './styles/global.css';
 import { Tooltip } from 'react-tooltip';
 import { Toaster } from 'react-hot-toast';
 import { Bimestre } from './api/types/Resultado';
-import { useModal } from './components/Modal/ModalContextProvider';
-import BimestreSection from './components/BimestreSection';
-import ResultadoModal from './components/Modal/ResultadoModal';
+import { useModal } from './components/modal/ModalContextProvider';
+import BimestreSection from './components/page/BimestreSection';
+import ResultadoModal from './components/modal/ResultadoModal';
 
 function App() {
   const { modalState, handleModalState } = useModal();

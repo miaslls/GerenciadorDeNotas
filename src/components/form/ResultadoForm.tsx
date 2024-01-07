@@ -7,9 +7,9 @@ import {
   Bimestre,
   Disciplina,
   ResultadoDTO,
-} from '../api/types/Resultado';
-import { useResultados } from '../api/resultados/useResultados';
-import { handleCreateResultados } from '../api/resultados/createResultados';
+} from '../../api/types/Resultado';
+import { useResultados } from '../../api/resultados/useResultados';
+import { handleCreateResultados } from '../../api/resultados/createResultados';
 
 type FormState = {
   bimestre: Bimestre;
@@ -152,8 +152,6 @@ export default function ResultadoForm({
 
     return false;
   };
-
-  console.log(isFormSubmissable(formState)); // 🐞
 
   function handleDisciplinaClick(disciplina: Disciplina) {
     const nota = formState.notas[disciplina];
