@@ -8,7 +8,7 @@ export function useResultados(bimestre?: Bimestre) {
     data: resultados,
     isLoading,
     error,
-  } = useSWR(endpoints.getResultados(), fetcher);
+  } = useSWR(endpoints.getResultados, fetcher);
 
   if (!bimestre) {
     return {

@@ -25,11 +25,11 @@ function App() {
       />
 
       <main className="page">
-        {Object.values(Bimestre).map((key) => (
+        {Object.values(Bimestre).map((bimestre) => (
           <BimestreSection
-            bimestre={Bimestre[key]}
+            bimestre={bimestre}
             openModal={handleModalState}
-            key={`bimestre-${key}`}
+            key={`bimestre-${bimestre}`}
           />
         ))}
       </main>

@@ -3,7 +3,7 @@ import { ResultadoDTO } from '../types/Resultado';
 import { endpoints } from '../helpers/endpoints';
 
 async function createResultado(data: ResultadoDTO) {
-  const response = await fetch(endpoints.createResultado(), {
+  const response = await fetch(endpoints.createResultado, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
@@ -23,7 +23,7 @@ export async function handleCreateResultados(data: ResultadoDTO[]) {
   const success = results.length - errorMessages.length;
 
   if (success > 0) {
-    mutate(endpoints.getResultados());
+    mutate(endpoints.getResultados);
   }
 
   if (errorMessages.length > 0) {

@@ -11,7 +11,7 @@ export async function handleRemoveResultado(id: string) {
 
   if (response.ok) {
     toast.success('Resultado removido', { id: toastId });
-    mutate(endpoints.getResultados());
+    mutate(endpoints.getResultados);
   } else {
     const error = await response.json();
     toast.error(error.message, { id: toastId });
