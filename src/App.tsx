@@ -18,12 +18,12 @@ function App() {
   } = useResultadosGroupedByBimestre();
 
   if (isLoading) {
-    return <div>Carregando...</div>;
+    return <main className="page">Carregando...</main>;
   }
 
   if (error) {
     console.error(error);
-    return <div>Falha ao carregar resultados</div>;
+    return <main className="page">Falha ao carregar resultados</main>;
   }
 
   return (
