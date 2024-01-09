@@ -3,12 +3,9 @@ import './styles/_reset.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
-import ModalContextProvider from './components/modal/ModalContextProvider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ModalContextProvider>
-      <App />
-    </ModalContextProvider>
+    <App />
   </React.StrictMode>
 );

@@ -3,12 +3,28 @@ import './styles/global.css';
 import { Tooltip } from 'react-tooltip';
 import { Toaster } from 'react-hot-toast';
 import { Bimestre } from './api/types/Resultado';
-import { useModal } from './components/modal/ModalContextProvider';
+import { useResultadoModal } from './components/modal/useResultadoModal';
+import { useResultadosGroupedByBimestre } from './api/resultados/useResultados';
 import BimestreSection from './components/page/BimestreSection';
 import ResultadoModal from './components/modal/ResultadoModal';
 
 function App() {
-  const { modalState, handleModalState } = useModal();
+  const { modalState, handleModalState } = useResultadoModal();
+
+  const {
+    resultadosGroupedByBimestre: resultados,
+    isLoading,
+    error,
+  } = useResultadosGroupedByBimestre();
+
+  if (isLoading) {
+    return <main className="page">Carregando...</main>;
+  }
+
+  if (error) {
+    console.error(error);
+    return <main className="page">Falha ao carregar resultados</main>;
+  }
 
   return (
     <>
@@ -25,11 +41,12 @@ function App() {
       />
 
       <main className="page">
-        {Object.values(Bimestre).map((key) => (
+        {Object.values(Bimestre).map((bimestre) => (
           <BimestreSection
-            bimestre={Bimestre[key]}
+            resultados={resultados[bimestre]}
+            bimestre={bimestre}
             openModal={handleModalState}
-            key={`bimestre-${key}`}
+            key={`bimestre-${bimestre}`}
           />
         ))}
       </main>
@@ -38,6 +55,7 @@ function App() {
         <ResultadoModal
           closeModal={handleModalState}
           bimestre={modalState.bimestre}
+          resultados={resultados[modalState.bimestre]}
         />
       )}
     </>

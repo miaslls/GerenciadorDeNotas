@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { Resultado, Bimestre, Disciplina } from '../../api/types/Resultado';
 
+// Tipo que define o estado do formulário
 export type FormState = {
   bimestre: Bimestre;
   activeDisciplina: Disciplina;
@@ -12,6 +13,7 @@ export type FormState = {
   };
 };
 
+// Tipo que define a combinação entre o estado do formulário e seus handlers
 type FormStateAndHandlers = [
   FormState,
   {
@@ -22,6 +24,7 @@ type FormStateAndHandlers = [
   }
 ];
 
+// Função para construir o estado inicial do formulário
 function buildInitialFormState(
   bimestre: Bimestre,
   resultados: Resultado[]
@@ -42,12 +45,15 @@ function buildInitialFormState(
     },
   };
 
+  // Popula o estado do formulário com resultados existentes
+  // Adiciona disciplinas já preenchidas à lista de somente leitura
   if (resultados.length > 0) {
-    resultados.forEach((resultado) => {
+    for (const resultado of resultados) {
       initialForm.notas[resultado.disciplina] = resultado.nota;
       initialForm.readonlyDisciplinas.push(resultado.disciplina);
-    });
+    }
 
+    // Define a disciplina ativa com base na primeira nota vazia encontrada
     if (resultados.length < 4) {
       const activeKey = Object.entries(initialForm.notas)
         .filter(([_, nota]) => nota === '')
@@ -56,6 +62,7 @@ function buildInitialFormState(
       initialForm.activeDisciplina = Disciplina[activeKey];
     }
 
+    // Define a nota atual com base na disciplina ativa, considerando se ela é somente leitura
     initialForm.currentNota = {
       value: initialForm.notas[initialForm.activeDisciplina],
       isReadonly: initialForm.readonlyDisciplinas.includes(
@@ -64,10 +71,12 @@ function buildInitialFormState(
     };
   }
 
+  // Retorna o estado inicial do formulário após ser populado com resultados existentes
   return initialForm;
 }
 
-export function useForm(
+// Hook personalizado para gerenciar o estado do formulário
+export function useResultadoForm(
   bimestre: Bimestre,
   resultados: Resultado[]
 ): FormStateAndHandlers {
@@ -75,6 +84,7 @@ export function useForm(
     return buildInitialFormState(bimestre, resultados);
   });
 
+  // Função para verificar se o formulário está pronto para submissão
   const isFormSubmissable = () => {
     const definedNotas = Object.values(formState.notas).filter(
       (nota) => nota !== ''
@@ -87,10 +97,12 @@ export function useForm(
     return false;
   };
 
+  // Função para verificar se uma disciplina específica está atualmente ativa
   const isDisciplinaActive = (disciplina: Disciplina) => {
     return disciplina === formState.activeDisciplina;
   };
 
+  // Função para lidar com um clique em um botão de disciplina
   function handleDisciplinaClick(disciplina: Disciplina) {
     const nota = formState.notas[disciplina];
 
@@ -103,6 +115,7 @@ export function useForm(
       },
     });
 
+    // Foca no input de nota após clicar em uma disciplina
     const input = document.querySelector(
       "input[name='nota']"
     ) as HTMLInputElement;
@@ -110,6 +123,7 @@ export function useForm(
     input.focus();
   }
 
+  // Função para lidar com mudanças de input no campo de nota
   function handleNotaInput(e: ChangeEvent<HTMLInputElement>) {
     const newNota = Number(e.target.value);
 
@@ -126,6 +140,7 @@ export function useForm(
     });
   }
 
+  // Retorna o estado do formulário e seus handlers
   return [
     formState,
     {
