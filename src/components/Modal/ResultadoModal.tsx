@@ -1,7 +1,7 @@
 import styles from './ResultadoModal.module.css';
 
 import { Tooltip } from 'react-tooltip';
-import { Bimestre, BimestreAlias } from '../../api/types/Resultado';
+import { Bimestre, BimestreAlias, Resultado } from '../../api/types/Resultado';
 import ResultadoForm from '../form/ResultadoForm';
 import xIcon from '../../assets/x.svg';
 
@@ -20,11 +20,13 @@ function Overlay({ children, closeModal }: OverlayProps) {
 
 type ResultadoModalProps = {
   bimestre: Bimestre;
+  resultados: Resultado[];
   closeModal(): void;
 };
 
 export default function ResultadoModal({
   bimestre,
+  resultados,
   closeModal,
 }: ResultadoModalProps) {
   function handleUIClick(e: React.MouseEvent<HTMLButtonElement | HTMLElement>) {
@@ -62,7 +64,11 @@ export default function ResultadoModal({
             </button>
           </header>
 
-          <ResultadoForm bimestre={bimestre} />
+          <ResultadoForm
+            bimestre={bimestre}
+            resultados={resultados}
+            closeModal={closeModal}
+          />
         </section>
       </>
     </Overlay>
