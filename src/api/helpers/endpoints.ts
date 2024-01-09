@@ -1,12 +1,11 @@
 const baseURL = 'http://localhost:3000';
 
-const resultadoEndpoint = `${baseURL}/resultados`;
+const resultadosEndpoint = `${baseURL}/resultados`;
 
 const resultados = {
-  endpoint: resultadoEndpoint,
-  getResultados: resultadoEndpoint,
-  createResultado: resultadoEndpoint,
-  removeResultado: (id: string) => `${resultadoEndpoint}/${id}`,
+  getResultados: resultadosEndpoint,
+  createResultado: resultadosEndpoint,
+  removeResultado: (id: string) => `${resultadosEndpoint}/${id}`,
 };
 
 export const endpoints = {
