@@ -9,11 +9,13 @@ export async function handleRemoveResultado(id: string) {
     method: 'DELETE',
   });
 
-  if (response.ok) {
-    toast.success('Resultado removido', { id: toastId });
-    mutate(endpoints.getResultados);
-  } else {
+  if (!response.ok) {
     const error = await response.json();
     toast.error(error.message, { id: toastId });
+
+    return;
   }
+
+  mutate(endpoints.getResultados);
+  toast.success('Resultado removido', { id: toastId });
 }

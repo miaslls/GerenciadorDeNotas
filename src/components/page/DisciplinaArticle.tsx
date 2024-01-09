@@ -11,8 +11,10 @@ export default function DisciplinaArticle({
   nota,
   id,
 }: Resultado) {
+  // Formata a data de criação para exibição no formato português brasileiro
   const date = new Date(criadoEm).toLocaleDateString('pt-BR');
 
+  // Determina a classe CSS que define a cor do ícone/texto com base no valor da nota
   let notaColorClass: string;
 
   if (nota < 6) {
