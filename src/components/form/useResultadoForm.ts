@@ -43,10 +43,10 @@ function buildInitialFormState(
   };
 
   if (resultados.length > 0) {
-    resultados.forEach((resultado) => {
+    for (const resultado of resultados) {
       initialForm.notas[resultado.disciplina] = resultado.nota;
       initialForm.readonlyDisciplinas.push(resultado.disciplina);
-    });
+    }
 
     if (resultados.length < 4) {
       const activeKey = Object.entries(initialForm.notas)
@@ -67,7 +67,7 @@ function buildInitialFormState(
   return initialForm;
 }
 
-export function useForm(
+export function useResultadoForm(
   bimestre: Bimestre,
   resultados: Resultado[]
 ): FormStateAndHandlers {

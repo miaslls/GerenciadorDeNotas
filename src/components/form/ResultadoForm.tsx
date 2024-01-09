@@ -1,26 +1,21 @@
 import styles from './ResultadoForm.module.css';
 
-import { Bimestre, Disciplina } from '../../api/types/Resultado';
-import { useResultados } from '../../api/resultados/useResultados';
-import { useForm } from './useForm';
-import { useSubmit } from './useSubmit';
+import { Bimestre, Disciplina, Resultado } from '../../api/types/Resultado';
+import { useResultadoForm } from './useResultadoForm';
+import { handleSubmitResultados } from './handleSubmitResultados';
 
-export default function ResultadoForm({ bimestre }: { bimestre: Bimestre }) {
-  const {
-    resultadosByBimestre: resultados,
-    isLoading,
-    isError,
-  } = useResultados(bimestre);
+type ResultadoFormProps = {
+  bimestre: Bimestre;
+  resultados: Resultado[];
+  closeModal(): void;
+};
 
-  if (isLoading) {
-    return <div>Carregando...</div>;
-  }
-
-  if (isError) {
-    return <div>Falha ao carregar o conteúdo</div>;
-  }
-
-  const [formState, formHandlers] = useForm(bimestre, resultados);
+export default function ResultadoForm({
+  bimestre,
+  resultados,
+  closeModal,
+}: ResultadoFormProps) {
+  const [formState, formHandlers] = useResultadoForm(bimestre, resultados);
 
   const {
     isDisciplinaActive,
@@ -29,12 +24,10 @@ export default function ResultadoForm({ bimestre }: { bimestre: Bimestre }) {
     handleNotaInput,
   } = formHandlers;
 
-  const handleSubmit = useSubmit();
-
   return (
     <form
       className={styles.resultado_form}
-      onSubmit={(e) => handleSubmit(e, formState)}
+      onSubmit={(e) => handleSubmitResultados(e, formState, closeModal)}
       autoComplete="off"
     >
       <fieldset className={styles.disciplina_grid}>
