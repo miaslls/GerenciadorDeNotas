@@ -3,16 +3,26 @@ import { ResultadoDTO } from '../types/Resultado';
 import { endpoints } from '../helpers/endpoints';
 
 async function createResultado(data: ResultadoDTO) {
-  const response = await fetch(endpoints.createResultado, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
+  try {
+    const response = await fetch(endpoints.createResultado, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
 
-  if (!response.ok) {
-    const error = await response.json();
+    if (!response.ok) {
+      const parsedResponse = await response.json();
 
-    return error.message;
+      if (parsedResponse) {
+        return parsedResponse.message;
+      }
+
+      return `Erro inesperado; tente novamente (${response.status}: ${response.statusText})`;
+    }
+  } catch (error) {
+    console.error('caughtError:', error);
+
+    return 'Erro inesperado; tente novamente';
   }
 }
 
