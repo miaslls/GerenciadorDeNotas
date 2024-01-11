@@ -48,7 +48,7 @@ export async function handleSubmitResultados(
   // Verifica se todas as submissões resultaram em erros
   if (errorMessages.length === postData.length) {
     // Exibe uma mensagem de erro indicando falha na criação de resultados
-    toast.error(`Falha ao lançar nota(s); Erro(s): ${errorString}`, {
+    toast.error(`Falha ao lançar nota(s); ${errorString}`, {
       id: toastId,
     });
 
@@ -60,7 +60,7 @@ export async function handleSubmitResultados(
 
   // Exibindo uma mensagem indicando uma mistura de sucessos e erros
   toast(
-    `${success} nota(s) lançada(s); ${errorMessages.length} erro(s): ${errorString}`,
+    `${success} nota(s) lançada(s); ${errorMessages.length} erro(s); ${errorString}`,
     { id: toastId }
   );
 }
