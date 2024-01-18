@@ -18,14 +18,14 @@ export async function handleSubmitResultados(
 
   const toastId = toast.loading('Carregando...');
 
-  // Filtra disciplinas a ser submetidas com base no estado do formulário
+  // Filtra disciplinas a serem submetidas com base no estado do formulário
   const postDisciplinas = Object.values(Disciplina).filter(
     (disciplina) =>
       !form.readonlyDisciplinas.includes(disciplina) &&
       typeof form.notas[disciplina] === 'number'
   );
 
-  // Cria um payload para a API com base nas disciplinas a ser submetidas
+  // Cria um payload para a API com base nas disciplinas a serem submetidas
   const postData = postDisciplinas.map((disciplina) => ({
     disciplina,
     bimestre: form.bimestre,
@@ -58,7 +58,7 @@ export async function handleSubmitResultados(
   // Calcula o número de submissões bem-sucedidas
   const success = postData.length - errorMessages.length;
 
-  // Exibindo uma mensagem indicando uma mistura de sucessos e erros
+  // Exibe uma mensagem indicando uma mistura de sucessos e erros
   toast(
     `${success} nota(s) lançada(s); ${errorMessages.length} erro(s); ${errorString}`,
     { id: toastId }
