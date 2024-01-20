@@ -3,8 +3,6 @@
 ![Static Badge: React](https://img.shields.io/badge/React-5a5a5a?logo=react)
 ![Static Badge: TypeScript](https://img.shields.io/badge/TypeScript-5a5a5a?logo=typescript)
 
-Desafio MB Psicologia: **FRONTEND**
-
 ## <img src="public/server.png" width="16" alt="Server icon">&nbsp; Backend
 
 - [Gerenciador De Notas - server](https://github.com/miaslls/GerenciadorDeNotas-server#readme)
